@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using MediatR;
+using MediatR.Pipeline;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using StarWarsSampleApp.Application.Episodes.Queries.GetEpisodes;
+using StarWarsSampleApp.Application.Infrastructure;
 using StarWarsSampleApp.Persistence;
 
 namespace Api
@@ -30,6 +27,11 @@ namespace Api
             //Add DbContext using SQL Server Provider
             services.AddDbContext<StarWarsSampleAppDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("StarWarsSampleAppDatabase")));
+
+            //Add MediatR registering all handlers in given assembly 
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPreProcessorBehavior<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
+            services.AddMediatR(typeof(GetEpisodesQueryHandler).Assembly.GetTypes());
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
