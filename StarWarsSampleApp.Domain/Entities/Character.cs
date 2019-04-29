@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace StarWarsSampleApp.Domain.Entities
 {
@@ -9,13 +7,13 @@ namespace StarWarsSampleApp.Domain.Entities
         public Character()
         {
             Friends = new HashSet<Friendship>();
-            Episodes = new HashSet<Episode>();
+            Episodes = new HashSet<CharacterEpisode>();
         }
 
         public int Id { get; set; }
         public int Name { get; set; }
 
         public ICollection<Friendship> Friends { get; set; }
-        public ICollection<Episode> Episodes { get; set; }
+        public ICollection<CharacterEpisode> Episodes { get; set; }
     }
 }
