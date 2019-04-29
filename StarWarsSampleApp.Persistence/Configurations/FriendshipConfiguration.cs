@@ -12,7 +12,8 @@ namespace StarWarsSampleApp.Persistence.Configurations
 
             builder.HasOne(x => x.Character)
                 .WithMany(y => y.Friends)
-                .HasForeignKey(x => x.CharacterId);
+                .HasForeignKey(x => x.CharacterId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
