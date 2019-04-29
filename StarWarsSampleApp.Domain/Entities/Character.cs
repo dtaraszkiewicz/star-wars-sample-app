@@ -11,7 +11,7 @@ namespace StarWarsSampleApp.Domain.Entities
         }
 
         public int Id { get; set; }
-        public int Name { get; set; }
+        public string Name { get; set; }
 
         public ICollection<Friendship> Friends { get; set; }
         public ICollection<CharacterEpisode> Episodes { get; set; }

@@ -14,6 +14,7 @@ namespace StarWarsSampleApp.Persistence
         public DbSet<Character> Characters { get; set; }
         public DbSet<Episode> Episodes { get; set; }
         public DbSet<Friendship> Friendships { get; set; }
+        public DbSet<CharacterEpisode> CharacterEpisodes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

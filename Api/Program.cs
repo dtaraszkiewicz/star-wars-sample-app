@@ -26,7 +26,7 @@ namespace Api
                     var context = scope.ServiceProvider.GetService<StarWarsSampleAppDbContext>();
                     context.Database.Migrate();
 
-
+                    StarWarsSampleAppInitializer.Initialize(context);
                 }
                 catch (Exception ex)
                 {
