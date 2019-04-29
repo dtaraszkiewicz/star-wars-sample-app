@@ -1,11 +1,11 @@
 ﻿namespace StarWarsSampleApp.Domain.Entities
 {
-    public class Friendship
+    public class CharacterEpisode
     {
         public int CharacterId { get; set; }
-        public int FriendId { get; set; }
+        public int EpisodeId { get; set; }
 
         public virtual Character Character { get; set; }
-        public virtual Character Friend { get; set; }
+        public virtual Episode Episode { get; set; }
     }
 }
