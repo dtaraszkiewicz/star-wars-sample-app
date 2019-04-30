@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using System.Reflection;
+using MediatR;
 using MediatR.Pipeline;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,7 +9,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using StarWarsSampleApp.Application.Episodes.Queries.GetEpisodes;
 using StarWarsSampleApp.Application.Infrastructure;
+using StarWarsSampleApp.Application.Infrastructure.Automapper;
 using StarWarsSampleApp.Persistence;
+using AutoMapper;
 
 namespace Api
 {
@@ -24,6 +27,9 @@ namespace Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add AutoMapper
+            services.AddAutoMapper(new Assembly[] { typeof(AutoMapperProfile).GetTypeInfo().Assembly });
+
             //Add DbContext using SQL Server Provider
             services.AddDbContext<StarWarsSampleAppDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("StarWarsSampleAppDatabase")));

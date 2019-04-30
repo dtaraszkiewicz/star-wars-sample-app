@@ -12,7 +12,7 @@ namespace StarWarsSampleApp.Api.Controllers
     {
         // GET api/episodes
         [HttpGet]
-        public async Task<ActionResult<ICollection<EpisodeViewModel>>> Get()
+        public async Task<ActionResult<IList<EpisodeViewModel>>> Get()
         {
             return Ok(await Mediator.Send(new GetEpisodesQuery()));
         }

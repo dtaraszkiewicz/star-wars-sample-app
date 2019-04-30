@@ -14,8 +14,4 @@
     <ProjectReference Include="..\StarWarsSampleApp.Persistence\StarWarsSampleApp.Persistence.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Infrastructure\Automapper\" />
-  </ItemGroup>
-
 </Project>

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace StarWarsSampleApp.Application.Episodes.Queries.GetEpisodes
 {
-    public class GetEpisodesQuery : IRequest<ICollection<EpisodeViewModel>>
+    public class GetEpisodesQuery : IRequest<IList<EpisodeViewModel>>
     {
 
     }
