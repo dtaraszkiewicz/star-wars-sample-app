@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StarWarsSampleApp.Api</name>
+    </assembly>
+    <members>
+        <member name="T:StarWarsSampleApp.Api.Controllers.EpisodesController">
+            <summary>
+            Episodes API
+            </summary>
+        </member>
+        <member name="M:StarWarsSampleApp.Api.Controllers.EpisodesController.Get">
+            <summary>
+            Gets all episodes
+            </summary>
+            <returns>List of Episode View Model</returns>
+        </member>
+        <member name="M:StarWarsSampleApp.Api.Controllers.EpisodesController.Create(StarWarsSampleApp.Application.Episodes.Commands.CreateEpisode.CreateEpisodeCommand)">
+            <summary>
+            Creates a new episode
+            </summary>
+            <remarks>
+            Sample create Episode:
+            
+                POST api/episodes
+                {
+                    "name": "episode name"
+                }
+                
+            </remarks>
+            <param name="command">Episode to create</param>
+            <returns>The created episode id</returns>
+        </member>
+    </members>
+</doc>
