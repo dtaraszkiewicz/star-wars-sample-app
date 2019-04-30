@@ -12,6 +12,8 @@ using StarWarsSampleApp.Application.Infrastructure;
 using StarWarsSampleApp.Application.Infrastructure.Automapper;
 using StarWarsSampleApp.Persistence;
 using AutoMapper;
+using FluentValidation.AspNetCore;
+using StarWarsSampleApp.Application.Episodes.Commands.CreateEpisode;
 
 namespace Api
 {
@@ -39,7 +41,9 @@ namespace Api
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
             services.AddMediatR(typeof(GetEpisodesQueryHandler).Assembly.GetTypes());
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<CreateEpisodeCommandValidator>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

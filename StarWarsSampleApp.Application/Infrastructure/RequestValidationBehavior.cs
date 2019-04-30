@@ -19,7 +19,7 @@ namespace StarWarsSampleApp.Application.Infrastructure
 
         public Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
         {
-            var context = new System.ComponentModel.DataAnnotations.ValidationContext(request);
+            var context = new ValidationContext(request);
 
             var failures = _validators
                 .Select(v => v.Validate(context))
