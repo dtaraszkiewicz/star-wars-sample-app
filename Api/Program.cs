@@ -30,7 +30,7 @@ namespace Api
                 }
                 catch (Exception ex)
                 {
-                    throw ex;
+                    //TODO log errors
                 }
             }
 
