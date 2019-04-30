@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{DA2FE0FB-921
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{C915D14D-9914-4B8A-B0F0-7358EFD9DF46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsSampleApp.Api", "Api\StarWarsSampleApp.Api.csproj", "{57D31D77-81B0-4301-BBAB-AC9AB2C01A3A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsSampleApp.Api", "StarWarsSampleApp.Api\StarWarsSampleApp.Api.csproj", "{57D31D77-81B0-4301-BBAB-AC9AB2C01A3A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{CC69D9A8-ED08-46CD-B8FF-77480343FDED}"
 EndProject

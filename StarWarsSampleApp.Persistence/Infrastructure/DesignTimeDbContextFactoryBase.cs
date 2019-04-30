@@ -13,7 +13,7 @@ namespace StarWarsSampleApp.Persistence.Infrastructure
 
         public TContext CreateDbContext(string[] args)
         {
-            var basePath = Directory.GetCurrentDirectory() + string.Format("{0}..{0}Api", Path.DirectorySeparatorChar);
+            var basePath = Directory.GetCurrentDirectory() + string.Format("{0}..{0}StarWarsSampleApp.Api", Path.DirectorySeparatorChar);
             return Setup(basePath);
         }
 
