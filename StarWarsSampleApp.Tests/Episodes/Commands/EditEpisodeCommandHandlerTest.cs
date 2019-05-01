@@ -10,6 +10,7 @@ using Xunit;
 
 namespace StarWarsSampleApp.Tests.Episodes.Commands
 {
+    [Collection("Test collection")]
     public class EditEpisodeCommandHandlerTest : IAsyncLifetime
     {
         private readonly TestFixture _testFixture;
@@ -30,8 +31,8 @@ namespace StarWarsSampleApp.Tests.Episodes.Commands
         {
             // Arrange
             var episode = new EpisodeBuilder().Generate().SaveChanges(_testFixture.Context).Build().First();
-            var command = new EditEpisodeCommand {Id = episode.Id, Name = "changed"};
-            var commandHandler = new EditEpisodeCommandHandler(_testFixture.Context);
+            var command = new EditEpisodeCommand { Id = episode.Id, Name = "changed" };
+            var commandHandler = new EditEpisodeCommandHandler(_testFixture.Context, _testFixture.Mapper);
 
             // Act
             var response = await commandHandler.Handle(command, CancellationToken.None);

@@ -29,7 +29,7 @@
             <remarks>
             Sample create Episode:
             
-                POST api/episodes
+                POST api/episodes/create
                 {
                     "name": "episode name"
                 }
@@ -37,6 +37,23 @@
             </remarks>
             <param name="command">Episode to create</param>
             <returns>The created episode id</returns>
+        </member>
+        <member name="M:StarWarsSampleApp.Api.Controllers.EpisodesController.Edit(StarWarsSampleApp.Application.Episodes.Commands.EditEpisode.EditEpisodeCommand)">
+            <summary>
+            Updates restaurant
+            </summary>
+            <remarks>
+            Sample edit Episode:
+            
+                POST api/episodes/edit
+                {
+                    "id": "1",
+                    "name": "episode name"
+                }
+                
+            </remarks>
+            <param name="command"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>

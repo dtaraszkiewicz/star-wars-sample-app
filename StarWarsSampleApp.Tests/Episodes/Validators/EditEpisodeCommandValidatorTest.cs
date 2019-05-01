@@ -9,6 +9,7 @@ using Xunit;
 
 namespace StarWarsSampleApp.Tests.Episodes.Validators
 {
+    [Collection("Test collection")]
     public class EditEpisodeCommandValidatorTest : IAsyncLifetime
     {
         private readonly TestFixture _testFixture;
@@ -59,9 +60,9 @@ namespace StarWarsSampleApp.Tests.Episodes.Validators
         public async Task Edit_episode_command_validator_should_return_unique_name_validation_error()
         {
             // Arrange
-            var episodeInDb = new EpisodeBuilder().Generate().SaveChanges(_testFixture.Context).Build().First();
+            var episodesInDb = new EpisodeBuilder().Generate(2).SaveChanges(_testFixture.Context).Build();
             var validator = new EditEpisodeCommandValidator(_testFixture.Context);
-            var command = new EditEpisodeCommand { Id = episodeInDb.Id, Name = episodeInDb.Name };
+            var command = new EditEpisodeCommand { Id = episodesInDb.First().Id, Name = episodesInDb.Last().Name };
 
             // Act
             var validationResult = await validator.ValidateAsync(command);

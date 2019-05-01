@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using FluentValidation;
 using FluentValidation.Validators;
-using StarWarsSampleApp.Application.Episodes.Commands.CreateEpisode;
 using StarWarsSampleApp.Persistence;
 
 namespace StarWarsSampleApp.Application.Episodes.Commands.EditEpisode
@@ -22,9 +21,9 @@ namespace StarWarsSampleApp.Application.Episodes.Commands.EditEpisode
                 .Must(BeUnique).WithMessage("The episode name has to be unique");
         }
 
-        private bool BeUnique(CreateEpisodeCommand command, string name, PropertyValidatorContext ctx)
+        private bool BeUnique(EditEpisodeCommand command, string name, PropertyValidatorContext ctx)
         {
-            return _context.Episodes.SkipWhile(x => x.Name == name).All(x => x.Name != name);
+            return _context.Episodes.Where(x => x.Id != command.Id).All(x => x.Name != name);
         }
     }
 }

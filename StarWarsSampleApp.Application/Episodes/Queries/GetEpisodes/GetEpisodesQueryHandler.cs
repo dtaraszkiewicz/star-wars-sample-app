@@ -22,11 +22,6 @@ namespace StarWarsSampleApp.Application.Episodes.Queries.GetEpisodes
 
         public async Task<IList<EpisodeViewModel>> Handle(GetEpisodesQuery request, CancellationToken cancellationToken)
         {
-            //var episodes = await _context.Episodes.Select(x => new EpisodeViewModel
-            //{
-            //    Name = x.Name
-            //}).ToListAsync();
-
             var episodes = _mapper.Map<IList<EpisodeViewModel>>(await _context.Episodes
                 .ToListAsync(cancellationToken));
 
