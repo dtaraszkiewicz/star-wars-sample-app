@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{DA2FE0FB-921
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{C915D14D-9914-4B8A-B0F0-7358EFD9DF46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsSampleApp.Api", "StarWarsSampleApp.Api\StarWarsSampleApp.Api.csproj", "{57D31D77-81B0-4301-BBAB-AC9AB2C01A3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarWarsSampleApp.Api", "StarWarsSampleApp.Api\StarWarsSampleApp.Api.csproj", "{57D31D77-81B0-4301-BBAB-AC9AB2C01A3A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{CC69D9A8-ED08-46CD-B8FF-77480343FDED}"
 EndProject
@@ -15,11 +15,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{A306047C-7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{8D9A45BF-4C9D-4EBB-A45B-1AF5549D786E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsSampleApp.Persistence", "StarWarsSampleApp.Persistence\StarWarsSampleApp.Persistence.csproj", "{B7D47C74-79D4-41C0-BF12-E65A3752A1ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarWarsSampleApp.Persistence", "StarWarsSampleApp.Persistence\StarWarsSampleApp.Persistence.csproj", "{B7D47C74-79D4-41C0-BF12-E65A3752A1ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsSampleApp.Domain", "StarWarsSampleApp.Domain\StarWarsSampleApp.Domain.csproj", "{CC13BB9B-7D77-4DF4-8C72-CBC48C9649D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarWarsSampleApp.Domain", "StarWarsSampleApp.Domain\StarWarsSampleApp.Domain.csproj", "{CC13BB9B-7D77-4DF4-8C72-CBC48C9649D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsSampleApp.Application", "StarWarsSampleApp.Application\StarWarsSampleApp.Application.csproj", "{1CB44FC2-E1D7-42D5-AA0F-2478653C456F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarWarsSampleApp.Application", "StarWarsSampleApp.Application\StarWarsSampleApp.Application.csproj", "{1CB44FC2-E1D7-42D5-AA0F-2478653C456F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsSampleApp.Tests", "StarWarsSampleApp.Tests\StarWarsSampleApp.Tests.csproj", "{3D1458CA-93E5-4281-AD46-66570259ABDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,10 @@ Global
 		{1CB44FC2-E1D7-42D5-AA0F-2478653C456F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CB44FC2-E1D7-42D5-AA0F-2478653C456F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CB44FC2-E1D7-42D5-AA0F-2478653C456F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D1458CA-93E5-4281-AD46-66570259ABDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D1458CA-93E5-4281-AD46-66570259ABDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D1458CA-93E5-4281-AD46-66570259ABDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D1458CA-93E5-4281-AD46-66570259ABDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +61,7 @@ Global
 		{B7D47C74-79D4-41C0-BF12-E65A3752A1ED} = {8D9A45BF-4C9D-4EBB-A45B-1AF5549D786E}
 		{CC13BB9B-7D77-4DF4-8C72-CBC48C9649D8} = {A306047C-7B90-4B46-B23C-304731E5A0A1}
 		{1CB44FC2-E1D7-42D5-AA0F-2478653C456F} = {A306047C-7B90-4B46-B23C-304731E5A0A1}
+		{3D1458CA-93E5-4281-AD46-66570259ABDD} = {CC69D9A8-ED08-46CD-B8FF-77480343FDED}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9F07AC89-D0B3-463C-A0DC-C5F87D629C61}
