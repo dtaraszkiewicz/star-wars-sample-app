@@ -58,7 +58,11 @@ namespace Api
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
             services.AddMediatR(typeof(GetEpisodesQueryHandler).Assembly.GetTypes());
 
-            services.AddMvc()
+            services.AddMvc(
+                    config =>
+                    {
+                        config.Filters.Add(typeof(ExceptionHandler));
+                    })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<CreateEpisodeCommandValidator>());
         }

@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
+using StarWarsSampleApp.Application.Exceptions;
+using StarWarsSampleApp.Domain.Entities;
 using StarWarsSampleApp.Persistence;
 
 namespace StarWarsSampleApp.Application.Episodes.Queries.GetEpisode
@@ -22,6 +24,11 @@ namespace StarWarsSampleApp.Application.Episodes.Queries.GetEpisode
             var result = _mapper
                 .Map<EpisodeViewModel>(await _context.Episodes
                     .FindAsync(request.Id));
+
+            if (result == null)
+            {
+                throw new NotFoundException(typeof(Episode), request.Id);
+            }
 
             return result;
         }
