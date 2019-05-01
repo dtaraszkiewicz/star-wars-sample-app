@@ -4,6 +4,7 @@ using StarWarsSampleApp.Application.Episodes.Queries.GetEpisodes;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using StarWarsSampleApp.Application.Episodes.Commands.CreateEpisode;
+using StarWarsSampleApp.Application.Episodes.Commands.EditEpisode;
 
 namespace StarWarsSampleApp.Api.Controllers
 {
@@ -41,7 +42,7 @@ namespace StarWarsSampleApp.Api.Controllers
         /// <remarks>
         /// Sample create Episode:
         /// 
-        ///     POST api/episodes
+        ///     POST api/episodes/create
         ///     {
         ///         "name": "episode name"
         ///     }
@@ -49,8 +50,30 @@ namespace StarWarsSampleApp.Api.Controllers
         /// </remarks>
         /// <param name="command">Episode to create</param>
         /// <returns>The created episode id</returns>
-        [HttpPost]
+        [HttpPost("Create")]
         public async Task<ActionResult<int>> Create([FromBody] CreateEpisodeCommand command)
+        {
+            var episodeId = await Mediator.Send(command);
+            return Ok(episodeId);
+        }
+
+        /// <summary>
+        /// Updates restaurant
+        /// </summary>
+        /// <remarks>
+        /// Sample edit Episode:
+        /// 
+        ///     POST api/episodes/edit
+        ///     {
+        ///         "id": "1",
+        ///         "name": "episode name"
+        ///     }
+        ///     
+        /// </remarks>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [HttpPost("Edit")]
+        public async Task<ActionResult<int>> Edit([FromBody] EditEpisodeCommand command)
         {
             var episodeId = await Mediator.Send(command);
             return Ok(episodeId);
