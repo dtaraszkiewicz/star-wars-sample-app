@@ -1,9 +1,12 @@
-﻿using StarWarsSampleApp.Tests.Infrastructure;
-using System.Linq;
+﻿using System.Collections.Generic;
+using StarWarsSampleApp.Tests.Infrastructure;
+using System.Threading;
 using System.Threading.Tasks;
 using Respawn;
 using Shouldly;
-using StarWarsSampleApp.Domain.Entities;
+using StarWarsSampleApp.Application.Episodes.Queries.GetEpisode;
+using StarWarsSampleApp.Application.Episodes.Queries.GetEpisodes;
+using StarWarsSampleApp.Tests.Builders;
 using Xunit;
 
 namespace StarWarsSampleApp.Tests.Episodes.Queries
@@ -25,14 +28,18 @@ namespace StarWarsSampleApp.Tests.Episodes.Queries
         public Task DisposeAsync() => Task.CompletedTask;
 
         [Fact]
-        public async Task firstTest()
+        public async Task Get_episodes_query_handler_should_return_list_of_episodes()
         {
-            _testFixture.Context.Episodes.Add(new Episode {Name = "test"});
-            await _testFixture.Context.SaveChangesAsync();
+            // Arrange
+            var episodes = new EpisodeBuilder().Generate(10).SaveChanges(_testFixture.Context).Build();
+            var queryHandler = new GetEpisodesQueryHandler(_testFixture.Context, _testFixture.Mapper);
 
-            var episode = _testFixture.Context.Episodes.FirstOrDefault();
+            // Act
+            var response = await queryHandler.Handle(new GetEpisodesQuery(), CancellationToken.None);
 
-            episode.Name.ShouldBe("test");
+            // Assert
+            response.ShouldBeOfType(typeof(List<EpisodeViewModel>));
+            response.Count.ShouldBe(episodes.Count);
         }
     }
 }
