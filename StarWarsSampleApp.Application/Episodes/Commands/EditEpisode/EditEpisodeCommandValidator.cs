@@ -14,7 +14,8 @@ namespace StarWarsSampleApp.Application.Episodes.Commands.EditEpisode
             _context = context;
 
             RuleFor(x => x.Id)
-                .NotEmpty();
+                .NotEmpty()
+                .Must(BeActive).WithMessage("This episode was deleted"); 
 
             RuleFor(x => x.Name)
                 .NotEmpty()
@@ -24,6 +25,17 @@ namespace StarWarsSampleApp.Application.Episodes.Commands.EditEpisode
         private bool BeUnique(EditEpisodeCommand command, string name, PropertyValidatorContext ctx)
         {
             return _context.Episodes.Where(x => x.Id != command.Id).All(x => x.Name != name);
+        }
+
+        private bool BeActive(EditEpisodeCommand command, int id, PropertyValidatorContext ctx)
+        {
+            var entity = _context.Episodes.Find(id);
+            if (entity == null || entity.IsActive)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

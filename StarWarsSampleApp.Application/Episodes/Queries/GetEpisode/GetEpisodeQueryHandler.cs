@@ -21,14 +21,14 @@ namespace StarWarsSampleApp.Application.Episodes.Queries.GetEpisode
 
         public async Task<EpisodeViewModel> Handle(GetEpisodeQuery request, CancellationToken cancellationToken)
         {
-            var result = _mapper
-                .Map<EpisodeViewModel>(await _context.Episodes
-                    .FindAsync(request.Id));
+            var episode = await _context.Episodes.FindAsync(request.Id);
 
-            if (result == null)
+            if (episode == null || episode.IsActive == false)
             {
                 throw new NotFoundException(typeof(Episode), request.Id);
             }
+
+            var result = _mapper.Map<EpisodeViewModel>(episode);
 
             return result;
         }
