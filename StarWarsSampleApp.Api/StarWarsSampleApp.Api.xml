@@ -55,5 +55,12 @@
             <param name="command"></param>
             <returns></returns>
         </member>
+        <member name="M:StarWarsSampleApp.Api.Controllers.EpisodesController.Delete(System.Int32)">
+            <summary>
+            Deletes episode
+            </summary>
+            <param name="id"></param>
+            <returns>204 NoContent</returns>
+        </member>
     </members>
 </doc>

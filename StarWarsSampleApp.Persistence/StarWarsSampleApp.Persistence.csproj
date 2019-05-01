@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Compile Remove="Migrations\20190429123824_initial.cs" />
+    <Compile Remove="Migrations\20190501123348_addIsActiveFlagToEpisodeTable.cs" />
   </ItemGroup>
 
   <ItemGroup>
