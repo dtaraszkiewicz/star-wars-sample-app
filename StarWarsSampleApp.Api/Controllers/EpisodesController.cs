@@ -4,6 +4,7 @@ using StarWarsSampleApp.Application.Episodes.Queries.GetEpisodes;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using StarWarsSampleApp.Application.Episodes.Commands.CreateEpisode;
+using StarWarsSampleApp.Application.Episodes.Commands.DeleteEpisode;
 using StarWarsSampleApp.Application.Episodes.Commands.EditEpisode;
 
 namespace StarWarsSampleApp.Api.Controllers
@@ -77,6 +78,18 @@ namespace StarWarsSampleApp.Api.Controllers
         {
             var episodeId = await Mediator.Send(command);
             return Ok(episodeId);
+        }
+
+        /// <summary>
+        /// Deletes episode
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>204 NoContent</returns>
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            await Mediator.Send(new DeleteEpisodeCommand {Id = id});
+            return NoContent();
         }
     }
 }

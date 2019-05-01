@@ -72,5 +72,26 @@ namespace StarWarsSampleApp.Tests.Episodes.Validators
             validationResult.Errors.First().ErrorCode.ShouldBe("PredicateValidator");
             validationResult.Errors.First().ErrorMessage.ShouldBe("The episode name has to be unique");
         }
+
+        [Fact]
+        public async Task Edit_episode_command_validator_should_return_is_deleted_validation_error()
+        {
+            // Arrange
+            var episodeInDb = new EpisodeBuilder().Generate().SaveChanges(_testFixture.Context).Build().First();
+            var validator = new EditEpisodeCommandValidator(_testFixture.Context);
+            var entity = _testFixture.Context.Episodes.Find(episodeInDb.Id);
+            entity.IsActive = false;
+            _testFixture.Context.Episodes.Update(entity);
+            _testFixture.Context.SaveChanges();
+            var command = new EditEpisodeCommand { Id = episodeInDb.Id, Name = episodeInDb.Name };
+
+            // Act
+            var validationResult = await validator.ValidateAsync(command);
+
+            // Assert
+            validationResult.Errors.Count.ShouldBe(1);
+            validationResult.Errors.First().ErrorCode.ShouldBe("PredicateValidator");
+            validationResult.Errors.First().ErrorMessage.ShouldBe("This episode was deleted");
+        }
     }
 }
