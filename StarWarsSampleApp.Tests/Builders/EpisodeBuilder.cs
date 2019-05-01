@@ -22,7 +22,6 @@ namespace StarWarsSampleApp.Tests.Builders
         {
             _episodes = _episodeFaker.Generate(amount);
             return this;
-
         }
 
         public EpisodeBuilder SaveChanges(StarWarsSampleAppDbContext context)
