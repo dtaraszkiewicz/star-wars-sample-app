@@ -41,5 +41,19 @@ namespace StarWarsSampleApp.Tests.Episodes.Queries
             response.ShouldBeOfType(typeof(List<EpisodeViewModel>));
             response.Count.ShouldBe(episodes.Count);
         }
+
+        [Fact]
+        public async Task Get_episodes_query_handler_should_return_empty_list()
+        {
+            // Arrange
+            var queryHandler = new GetEpisodesQueryHandler(_testFixture.Context, _testFixture.Mapper);
+
+            // Act
+            var response = await queryHandler.Handle(new GetEpisodesQuery(), CancellationToken.None);
+
+            // Assert
+            response.ShouldBeOfType(typeof(List<EpisodeViewModel>));
+            response.ShouldBeEmpty();
+        }
     }
 }
