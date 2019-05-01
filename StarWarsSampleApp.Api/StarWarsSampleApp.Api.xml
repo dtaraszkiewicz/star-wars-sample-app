@@ -9,6 +9,13 @@
             Episodes API
             </summary>
         </member>
+        <member name="M:StarWarsSampleApp.Api.Controllers.EpisodesController.Get(System.Int32)">
+            <summary>
+            Get episode using id
+            </summary>
+            <param name="id">episode id</param>
+            <returns>Episode View Model</returns>
+        </member>
         <member name="M:StarWarsSampleApp.Api.Controllers.EpisodesController.Get">
             <summary>
             Gets all episodes

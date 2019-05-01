@@ -15,6 +15,17 @@ namespace StarWarsSampleApp.Api.Controllers
     public class EpisodesController : BaseController
     {
         /// <summary>
+        /// Get episode using id
+        /// </summary>
+        /// <param name="id">episode id</param>
+        /// <returns>Episode View Model</returns>
+        [HttpGet("{id}")]
+        public async Task<ActionResult<EpisodeViewModel>> Get(int id)
+        {
+            return Ok(await Mediator.Send(new GetEpisodeQuery { Id = id }));
+        }
+
+        /// <summary>
         /// Gets all episodes
         /// </summary>
         /// <returns>List of Episode View Model</returns>
