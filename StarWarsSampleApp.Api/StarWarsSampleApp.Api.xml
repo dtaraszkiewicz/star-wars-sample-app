@@ -16,6 +16,12 @@
             <param name="id"></param>
             <returns>Character View Model</returns>
         </member>
+        <member name="M:StarWarsSampleApp.Api.Controllers.CharactersController.Get">
+            <summary>
+            Get all characters
+            </summary>
+            <returns>Collection of Get Character View Model</returns>
+        </member>
         <member name="T:StarWarsSampleApp.Api.Controllers.EpisodesController">
             <summary>
             Episodes API
