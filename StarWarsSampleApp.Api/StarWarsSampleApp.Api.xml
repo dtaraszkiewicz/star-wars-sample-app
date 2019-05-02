@@ -4,6 +4,18 @@
         <name>StarWarsSampleApp.Api</name>
     </assembly>
     <members>
+        <member name="T:StarWarsSampleApp.Api.Controllers.CharactersController">
+            <summary>
+            Episodes API
+            </summary>
+        </member>
+        <member name="M:StarWarsSampleApp.Api.Controllers.CharactersController.Get(System.Int32)">
+            <summary>
+            Get character by id
+            </summary>
+            <param name="id"></param>
+            <returns>Character View Model</returns>
+        </member>
         <member name="T:StarWarsSampleApp.Api.Controllers.EpisodesController">
             <summary>
             Episodes API
