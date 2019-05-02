@@ -10,7 +10,7 @@ using StarWarsSampleApp.Tests.Builders;
 using StarWarsSampleApp.Tests.Infrastructure;
 using Xunit;
 
-namespace StarWarsSampleApp.Tests.Episodes.Queries
+namespace StarWarsSampleApp.Tests.Characters.Queries
 {
     [Collection("Test collection")]
     public class GetCharacterQueryHandlerTest : IAsyncLifetime
