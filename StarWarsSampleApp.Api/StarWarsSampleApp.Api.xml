@@ -22,6 +22,13 @@
             </summary>
             <returns>Collection of Get Character View Model</returns>
         </member>
+        <member name="M:StarWarsSampleApp.Api.Controllers.CharactersController.Create(StarWarsSampleApp.Application.Characters.Commands.CreateCharacter.CreateCharacterCommand)">
+            <summary>
+            Creates new character
+            </summary>
+            <param name="command"></param>
+            <returns>id of created character</returns>
+        </member>
         <member name="T:StarWarsSampleApp.Api.Controllers.EpisodesController">
             <summary>
             Episodes API

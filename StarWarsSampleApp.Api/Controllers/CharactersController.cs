@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using StarWarsSampleApp.Application.Characters.Commands.CreateCharacter;
 using StarWarsSampleApp.Application.Characters.Queries;
 using StarWarsSampleApp.Application.Characters.Queries.GetCharacters;
 
@@ -32,6 +33,17 @@ namespace StarWarsSampleApp.Api.Controllers
         public async Task<ActionResult<List<GetCharacterViewModel>>> Get()
         {
             return Ok(await Mediator.Send(new GetCharactersQuery()));
+        }
+
+        /// <summary>
+        /// Creates new character
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns>id of created character</returns>
+        [HttpPost("Create")]
+        public async Task<ActionResult<int>> Create([FromBody] CreateCharacterCommand command)
+        {
+            return Ok(await Mediator.Send(command));
         }
     }
 }
