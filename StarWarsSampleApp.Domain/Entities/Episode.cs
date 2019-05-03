@@ -11,7 +11,7 @@ namespace StarWarsSampleApp.Domain.Entities
 
         public int Id { get; set; }
         public string Name { get; set; }
-        public bool IsActive { get; set; } = true;
+        public bool? IsActive { get; set; } = true;
 
         public ICollection<CharacterEpisode> Characters { get; set; }
     }
