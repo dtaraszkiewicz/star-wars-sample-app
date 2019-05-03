@@ -1,6 +1,5 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using AutoMapper;
 using MediatR;
 using StarWarsSampleApp.Domain.Entities;
 using StarWarsSampleApp.Persistence;

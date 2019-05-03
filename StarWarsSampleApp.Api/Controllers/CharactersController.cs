@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using StarWarsSampleApp.Application.Characters.Commands.CreateCharacter;
+using StarWarsSampleApp.Application.Characters.Commands.EditCharacter;
 using StarWarsSampleApp.Application.Characters.Queries;
 using StarWarsSampleApp.Application.Characters.Queries.GetCharacters;
 
@@ -42,6 +43,17 @@ namespace StarWarsSampleApp.Api.Controllers
         /// <returns>id of created character</returns>
         [HttpPost("Create")]
         public async Task<ActionResult<int>> Create([FromBody] CreateCharacterCommand command)
+        {
+            return Ok(await Mediator.Send(command));
+        }
+
+        /// <summary>
+        /// Updates character
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns>id of updated character</returns>
+        [HttpPost("Edit")]
+        public async Task<ActionResult<int>> Edit([FromBody] EditCharacterCommand command)
         {
             return Ok(await Mediator.Send(command));
         }
