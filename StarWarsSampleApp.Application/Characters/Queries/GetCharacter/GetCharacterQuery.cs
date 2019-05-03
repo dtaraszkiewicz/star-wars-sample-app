@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace StarWarsSampleApp.Application.Characters.Queries
+namespace StarWarsSampleApp.Application.Characters.Queries.GetCharacter
 {
     public class GetCharacterQuery : IRequest<GetCharacterViewModel>
     {

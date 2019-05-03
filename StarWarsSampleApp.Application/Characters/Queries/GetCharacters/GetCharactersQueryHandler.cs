@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using StarWarsSampleApp.Application.Characters.Queries.GetCharacter;
 using StarWarsSampleApp.Persistence;
 
 namespace StarWarsSampleApp.Application.Characters.Queries.GetCharacters
@@ -23,6 +25,7 @@ namespace StarWarsSampleApp.Application.Characters.Queries.GetCharacters
         {
             var characters =
                 _mapper.Map<IList<GetCharacterViewModel>>(await _context.Characters
+                    .Where(x => x.IsActive.Value)
                     .Include(x => x.Episodes)
                     .ThenInclude(e => e.Episode)
                     .Include(x => x.Friends)

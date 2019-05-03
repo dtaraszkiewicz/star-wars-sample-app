@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StarWarsSampleApp.Persistence;
 
 namespace StarWarsSampleApp.Persistence.Migrations
 {
     [DbContext(typeof(StarWarsSampleAppDbContext))]
-    partial class StarWarsSampleAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190503110709_addIsActiveFlagToCharactersTable")]
+    partial class addIsActiveFlagToCharactersTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

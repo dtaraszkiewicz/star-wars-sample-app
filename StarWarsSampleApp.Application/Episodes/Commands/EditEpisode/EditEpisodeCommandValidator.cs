@@ -30,12 +30,7 @@ namespace StarWarsSampleApp.Application.Episodes.Commands.EditEpisode
         private bool BeActive(EditEpisodeCommand command, int id, PropertyValidatorContext ctx)
         {
             var entity = _context.Episodes.Find(id);
-            if (entity == null || entity.IsActive)
-            {
-                return true;
-            }
-
-            return false;
+            return entity.IsActive.HasValue && entity.IsActive.Value;
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Respawn;
 using Shouldly;
-using StarWarsSampleApp.Application.Characters.Queries;
+using StarWarsSampleApp.Application.Characters.Queries.GetCharacter;
 using StarWarsSampleApp.Application.Characters.Queries.GetCharacters;
 using StarWarsSampleApp.Tests.Builders;
 using StarWarsSampleApp.Tests.Infrastructure;
