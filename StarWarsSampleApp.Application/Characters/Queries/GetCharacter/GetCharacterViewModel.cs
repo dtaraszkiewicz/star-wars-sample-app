@@ -4,7 +4,7 @@ using StarWarsSampleApp.Application.Episodes.Queries.GetEpisode;
 using StarWarsSampleApp.Application.Interfaces.Mapping;
 using StarWarsSampleApp.Domain.Entities;
 
-namespace StarWarsSampleApp.Application.Characters.Queries
+namespace StarWarsSampleApp.Application.Characters.Queries.GetCharacter
 {
     public class GetCharacterViewModel : IHaveCustomMapping
     {

@@ -8,7 +8,7 @@ using StarWarsSampleApp.Application.Exceptions;
 using StarWarsSampleApp.Domain.Entities;
 using StarWarsSampleApp.Persistence;
 
-namespace StarWarsSampleApp.Application.Characters.Queries
+namespace StarWarsSampleApp.Application.Characters.Queries.GetCharacter
 {
     public class GetCharacterQueryHandler : IRequestHandler<GetCharacterQuery, GetCharacterViewModel>
     {
@@ -23,7 +23,8 @@ namespace StarWarsSampleApp.Application.Characters.Queries
 
         public async Task<GetCharacterViewModel> Handle(GetCharacterQuery request, CancellationToken cancellationToken)
         {
-            var entity = await _context.Characters.Where(x => x.Id == request.Id)
+            var entity = await _context.Characters
+                .Where(x => x.Id == request.Id && x.IsActive.Value)
                 .Include(x => x.Episodes)
                 .ThenInclude(e => e.Episode)
                 .Include(x => x.Friends)
@@ -34,7 +35,7 @@ namespace StarWarsSampleApp.Application.Characters.Queries
             {
                 throw new NotFoundException(typeof(Character), request.Id);
             }
-
+            
             var result = _mapper.Map<GetCharacterViewModel>(entity);
 
             return result;

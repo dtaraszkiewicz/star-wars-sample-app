@@ -2,8 +2,9 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using StarWarsSampleApp.Application.Characters.Commands.CreateCharacter;
+using StarWarsSampleApp.Application.Characters.Commands.DeleteCharacter;
 using StarWarsSampleApp.Application.Characters.Commands.EditCharacter;
-using StarWarsSampleApp.Application.Characters.Queries;
+using StarWarsSampleApp.Application.Characters.Queries.GetCharacter;
 using StarWarsSampleApp.Application.Characters.Queries.GetCharacters;
 
 namespace StarWarsSampleApp.Api.Controllers
@@ -56,6 +57,18 @@ namespace StarWarsSampleApp.Api.Controllers
         public async Task<ActionResult<int>> Edit([FromBody] EditCharacterCommand command)
         {
             return Ok(await Mediator.Send(command));
+        }
+
+        /// <summary>
+        /// Deletes character
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>No content</returns>
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            await Mediator.Send(new DeleteCharacterCommand {Id = id});
+            return NoContent();
         }
     }
 }

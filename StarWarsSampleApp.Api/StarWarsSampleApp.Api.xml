@@ -36,6 +36,13 @@
             <param name="command"></param>
             <returns>id of updated character</returns>
         </member>
+        <member name="M:StarWarsSampleApp.Api.Controllers.CharactersController.Delete(System.Int32)">
+            <summary>
+            Deletes character
+            </summary>
+            <param name="id"></param>
+            <returns>No content</returns>
+        </member>
         <member name="T:StarWarsSampleApp.Api.Controllers.EpisodesController">
             <summary>
             Episodes API
