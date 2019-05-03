@@ -29,6 +29,13 @@
             <param name="command"></param>
             <returns>id of created character</returns>
         </member>
+        <member name="M:StarWarsSampleApp.Api.Controllers.CharactersController.Edit(StarWarsSampleApp.Application.Characters.Commands.EditCharacter.EditCharacterCommand)">
+            <summary>
+            Updates character
+            </summary>
+            <param name="command"></param>
+            <returns>id of updated character</returns>
+        </member>
         <member name="T:StarWarsSampleApp.Api.Controllers.EpisodesController">
             <summary>
             Episodes API
