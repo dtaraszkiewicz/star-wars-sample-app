@@ -22,7 +22,6 @@ namespace StarWarsSampleApp.Application.Characters.Commands.EditCharacter
                 .Must(HaveAtLeastOneEpisode).WithMessage("Character has to star in at least one episode");
 
             RuleFor(x => x.FriendsIds)
-                .NotEmpty()
                 .Must(DoNotHaveRelationWithItself).WithMessage("Character cannot be friend with itself");
         }
 
