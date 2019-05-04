@@ -28,13 +28,13 @@ namespace StarWarsSampleApp.Api.Controllers
         }
 
         /// <summary>
-        /// Get all characters
+        /// Get all characters or page of characters
         /// </summary>
         /// <returns>Collection of Get Character View Model</returns>
         [HttpGet]
-        public async Task<ActionResult<List<GetCharacterViewModel>>> Get()
+        public async Task<ActionResult<List<GetCharacterViewModel>>> Get(int? pageNumber, int? pageSize)
         {
-            return Ok(await Mediator.Send(new GetCharactersQuery()));
+            return Ok(await Mediator.Send(new GetCharactersQuery { PageNumber = pageNumber, PageSize = pageSize }));
         }
 
         /// <summary>

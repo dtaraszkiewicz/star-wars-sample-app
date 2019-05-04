@@ -16,9 +16,9 @@
             <param name="id"></param>
             <returns>Character View Model</returns>
         </member>
-        <member name="M:StarWarsSampleApp.Api.Controllers.CharactersController.Get">
+        <member name="M:StarWarsSampleApp.Api.Controllers.CharactersController.Get(System.Nullable{System.Int32},System.Nullable{System.Int32})">
             <summary>
-            Get all characters
+            Get all characters or page of characters
             </summary>
             <returns>Collection of Get Character View Model</returns>
         </member>
