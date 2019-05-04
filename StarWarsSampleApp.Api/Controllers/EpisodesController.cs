@@ -28,13 +28,13 @@ namespace StarWarsSampleApp.Api.Controllers
         }
 
         /// <summary>
-        /// Gets all episodes
+        /// Gets all episodes or page of episodes
         /// </summary>
         /// <returns>List of Episode View Model</returns>
         [HttpGet]
-        public async Task<ActionResult<IList<EpisodeViewModel>>> Get()
+        public async Task<ActionResult<IList<EpisodeViewModel>>> Get(int? pageNumber, int? pageSize)
         {
-            return Ok(await Mediator.Send(new GetEpisodesQuery()));
+            return Ok(await Mediator.Send(new GetEpisodesQuery{PageNumber = pageNumber, PageSize = pageSize}));
         }
 
         /// <summary>

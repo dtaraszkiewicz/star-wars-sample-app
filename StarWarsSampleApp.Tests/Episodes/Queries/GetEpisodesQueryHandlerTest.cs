@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using StarWarsSampleApp.Tests.Infrastructure;
 using System.Threading;
 using System.Threading.Tasks;
@@ -54,6 +55,36 @@ namespace StarWarsSampleApp.Tests.Episodes.Queries
             // Assert
             response.ShouldBeOfType(typeof(List<EpisodeViewModel>));
             response.ShouldBeEmpty();
+        }
+
+        [Fact]
+        public async Task Get_episodes_query_handler_should_return_five_episodes()
+        {
+            // Arrange
+            var episodes = new EpisodeBuilder().Generate(15).SaveChanges(_testFixture.Context).Build();
+            var queryHandler = new GetEpisodesQueryHandler(_testFixture.Context, _testFixture.Mapper);
+
+            // Act
+            var response = await queryHandler.Handle(new GetEpisodesQuery { PageNumber = 2, PageSize = 5}, CancellationToken.None);
+
+            // Assert
+            response.ShouldBeOfType(typeof(List<EpisodeViewModel>));
+            response.Count.ShouldBe(5);
+        }
+
+        [Fact]
+        public async Task Get_episodes_query_handler_should_return_last_page()
+        {
+            // Arrange
+            var lastEpisode = new EpisodeBuilder().Generate(20).SaveChanges(_testFixture.Context).Build().Last();
+            var queryHandler = new GetEpisodesQueryHandler(_testFixture.Context, _testFixture.Mapper);
+
+            // Act
+            var response = await queryHandler.Handle(new GetEpisodesQuery { PageNumber = 17, PageSize = 4 }, CancellationToken.None);
+
+            // Assert
+            response.ShouldBeOfType(typeof(List<EpisodeViewModel>));
+            response.Last().Name.ShouldBe(lastEpisode.Name);
         }
     }
 }

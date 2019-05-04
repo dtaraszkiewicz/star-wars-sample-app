@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using System;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using StarWarsSampleApp.Application.Episodes.Queries.GetEpisode;
 using StarWarsSampleApp.Persistence;
@@ -23,11 +24,32 @@ namespace StarWarsSampleApp.Application.Episodes.Queries.GetEpisodes
 
         public async Task<IList<EpisodeViewModel>> Handle(GetEpisodesQuery request, CancellationToken cancellationToken)
         {
-            var episodes = _mapper.Map<IList<EpisodeViewModel>>(await _context.Episodes
-                .Where(x => x.IsActive.Value)
-                .ToListAsync(cancellationToken));
+            if (request.PageNumber.HasValue)
+            {
+                request.PageSize = request.PageSize ?? 10;
 
-            return episodes;
+                var query = _context.Episodes;
+                var count = await query.Where(x => x.IsActive.Value).CountAsync(cancellationToken);
+                var totalPages = (int) Math.Ceiling(count / (float) request.PageSize);
+
+                request.PageNumber = request.PageNumber <= totalPages ? request.PageNumber : totalPages;
+
+                var episodes = _mapper.Map<IList<EpisodeViewModel>>(await _context.Episodes
+                    .Where(x => x.IsActive.Value)
+                    .Skip((request.PageNumber.Value - 1) * request.PageSize.Value)
+                    .Take(request.PageSize.Value)
+                    .ToListAsync(cancellationToken));
+
+                return episodes;
+            }
+            else
+            {
+                var episodes = _mapper.Map<IList<EpisodeViewModel>>(await _context.Episodes
+                    .Where(x => x.IsActive.Value)
+                    .ToListAsync(cancellationToken));
+
+                return episodes;
+            }
         }
     }
 }

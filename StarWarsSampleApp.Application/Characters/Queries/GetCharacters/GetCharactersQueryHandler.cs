@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,15 +24,43 @@ namespace StarWarsSampleApp.Application.Characters.Queries.GetCharacters
 
         public async Task<IList<GetCharacterViewModel>> Handle(GetCharactersQuery request, CancellationToken cancellationToken)
         {
-            var characters =
-                _mapper.Map<IList<GetCharacterViewModel>>(await _context.Characters
-                    .Where(x => x.IsActive.Value)
-                    .Include(x => x.Episodes)
-                    .ThenInclude(e => e.Episode)
-                    .Include(x => x.Friends)
-                    .ThenInclude(f => f.Friend).ToListAsync(cancellationToken));
+            //TODO think of better way of pagination
+            if (request.PageNumber.HasValue)
+            {
+                request.PageSize = request.PageSize ?? 10;
 
-            return characters;
+                var query = _context.Characters;
+                var count = await query.Where(x => x.IsActive.Value).CountAsync(cancellationToken);
+                var totalPages = (int)Math.Ceiling(count / (float)request.PageSize);
+
+                request.PageNumber = request.PageNumber <= totalPages ? request.PageNumber : totalPages;
+
+                var characters =
+                    _mapper.Map<IList<GetCharacterViewModel>>(await _context.Characters
+                        .Where(x => x.IsActive.Value)
+                        .Include(x => x.Episodes)
+                        .ThenInclude(e => e.Episode)
+                        .Include(x => x.Friends)
+                        .ThenInclude(f => f.Friend)
+                        .Skip((request.PageNumber.Value - 1) * request.PageSize.Value)
+                        .Take(request.PageSize.Value)
+                        .ToListAsync(cancellationToken));
+
+                return characters;
+            }
+            else
+            {
+                var characters =
+                    _mapper.Map<IList<GetCharacterViewModel>>(await _context.Characters
+                        .Where(x => x.IsActive.Value)
+                        .Include(x => x.Episodes)
+                        .ThenInclude(e => e.Episode)
+                        .Include(x => x.Friends)
+                        .ThenInclude(f => f.Friend).ToListAsync(cancellationToken));
+
+                return characters;
+            }
+
         }
     }
 }
