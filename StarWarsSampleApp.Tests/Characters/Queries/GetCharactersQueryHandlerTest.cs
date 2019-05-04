@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Respawn;
@@ -54,6 +55,36 @@ namespace StarWarsSampleApp.Tests.Characters.Queries
             // Assert
             response.ShouldBeOfType(typeof(List<GetCharacterViewModel>));
             response.ShouldBeEmpty();
+        }
+
+        [Fact]
+        public async Task Get_characters_query_handler_should_return_ten_episodes()
+        {
+            // Arrange
+            new CharacterBuilder().Generate(15).SaveChanges(_testFixture.Context).Build();
+            var queryHandler = new GetCharactersQueryHandler(_testFixture.Context, _testFixture.Mapper);
+
+            // Act
+            var response = await queryHandler.Handle(new GetCharactersQuery { PageNumber = 1, PageSize = null }, CancellationToken.None);
+
+            // Assert
+            response.ShouldBeOfType(typeof(List<GetCharacterViewModel>));
+            response.Count.ShouldBe(10);
+        }
+
+        [Fact]
+        public async Task Get_episodes_query_handler_should_return_last_page()
+        {
+            // Arrange
+            var lastCharacter = new CharacterBuilder().Generate(20).SaveChanges(_testFixture.Context).Build().Last();
+            var queryHandler = new GetCharactersQueryHandler(_testFixture.Context, _testFixture.Mapper);
+
+            // Act
+            var response = await queryHandler.Handle(new GetCharactersQuery { PageNumber = 17, PageSize = 4 }, CancellationToken.None);
+
+            // Assert
+            response.ShouldBeOfType(typeof(List<GetCharacterViewModel>));
+            response.Last().Name.ShouldBe(lastCharacter.Name);
         }
     }
 }
