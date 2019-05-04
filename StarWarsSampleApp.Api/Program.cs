@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using StarWarsSampleApp.Persistence;
 
-namespace Api
+namespace StarWarsSampleApp.Api
 {
     public class Program
     {

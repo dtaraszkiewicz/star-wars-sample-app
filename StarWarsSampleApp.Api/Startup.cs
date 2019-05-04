@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using AutoMapper;
+using FluentValidation.AspNetCore;
 using MediatR;
 using MediatR.Pipeline;
 using Microsoft.AspNetCore.Builder;
@@ -9,16 +11,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using StarWarsSampleApp.Application.Episodes.Commands.CreateEpisode;
 using StarWarsSampleApp.Application.Episodes.Queries.GetEpisodes;
 using StarWarsSampleApp.Application.Infrastructure;
 using StarWarsSampleApp.Application.Infrastructure.Automapper;
 using StarWarsSampleApp.Persistence;
-using AutoMapper;
-using FluentValidation.AspNetCore;
-using StarWarsSampleApp.Application.Episodes.Commands.CreateEpisode;
 using Swashbuckle.AspNetCore.Swagger;
 
-namespace Api
+namespace StarWarsSampleApp.Api
 {
     public class Startup
     {

@@ -55,9 +55,9 @@
             <param name="id">episode id</param>
             <returns>Episode View Model</returns>
         </member>
-        <member name="M:StarWarsSampleApp.Api.Controllers.EpisodesController.Get">
+        <member name="M:StarWarsSampleApp.Api.Controllers.EpisodesController.Get(System.Nullable{System.Int32},System.Nullable{System.Int32})">
             <summary>
-            Gets all episodes
+            Gets all episodes or page of episodes
             </summary>
             <returns>List of Episode View Model</returns>
         </member>
